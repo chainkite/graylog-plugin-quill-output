@@ -31,12 +31,12 @@ class InsertAstHelperTest extends FunSpec with Matchers with PrivateMethodTester
 
   import InsertAstHelper._
 
-  val insertDml = "insert into graylog_mysql_output (datetime, level, message) values ({timestamp:org.joda.time.DateTime}, {level:int}, {message})"
+  val insertDml = "insert into graylog_pg_output (datetime, level, message) values ({timestamp:org.joda.time.DateTime}, {level:int}, {message})"
 
   val valuesInLog = Map("timestamp" -> "'2016-01-01T00:00:00Z'", "level" -> "6", "message" -> "'test'")
 
   val expected = Insert(
-    into = "graylog_mysql_output",
+    into = "graylog_pg_output",
     fields = List("datetime", "level", "message"),
     values = List(
       ValueContext("timestamp", Some("org.joda.time.DateTime")),
@@ -98,13 +98,13 @@ class InsertAstHelperTest extends FunSpec with Matchers with PrivateMethodTester
       result.get should equal (expected)
 
       result.get.toInsertSql should
-        equal("insert into graylog_mysql_output (datetime,level,message) values (?,?,?);")
+        equal("insert into graylog_pg_output (datetime,level,message) values (?,?,?);")
       result.get.toInsertSql(valuesInLog) should
-        equal(s"""insert into graylog_mysql_output (datetime,level,message) values ('${"2016-01-01T00:00:00Z"}',6,'test');""")
+        equal(s"""insert into graylog_pg_output (datetime,level,message) values ('${"2016-01-01T00:00:00Z"}',6,'test');""")
       result.get.toBulkInsertSql(3) should
-        equal("insert into graylog_mysql_output (datetime,level,message) values (?,?,?),(?,?,?),(?,?,?);")
+        equal("insert into graylog_pg_output (datetime,level,message) values (?,?,?),(?,?,?),(?,?,?);")
       result.get.toBulkInsertSql(List(valuesInLog, valuesInLog, valuesInLog)) should
-        equal(s"""insert into graylog_mysql_output (datetime,level,message) values ('${"2016-01-01T00:00:00Z"}',6,'test'),('${"2016-01-01T00:00:00Z"}',6,'test'),('${"2016-01-01T00:00:00Z"}',6,'test');""")
+        equal(s"""insert into graylog_pg_output (datetime,level,message) values ('${"2016-01-01T00:00:00Z"}',6,'test'),('${"2016-01-01T00:00:00Z"}',6,'test'),('${"2016-01-01T00:00:00Z"}',6,'test');""")
     }
   }
 }

@@ -64,17 +64,17 @@ trait QuillOutputSupport {
       val protocols: util.Map[String, String] = ImmutableMap.of("Finagle", "Finagle")
       val configurationRequest: ConfigurationRequest = new ConfigurationRequest
       configurationRequest.addField(
-        new TextField(CK_HOST, "DB Host", "",
+        new TextField(CK_HOST, "Host", "",
           "This is the hostname of the database",
           ConfigurationField.Optional.NOT_OPTIONAL))
 
       configurationRequest.addField(
-        new NumberField(CK_PORT, "DB Port", DEFAULT_PORT,
+        new NumberField(CK_PORT, "Port", DEFAULT_PORT,
           "This is the port of the database",
           ConfigurationField.Optional.NOT_OPTIONAL, NumberField.Attribute.IS_PORT_NUMBER))
 
       configurationRequest.addField(
-        new TextField(CK_DB, "MySQL Database Name", "",
+        new TextField(CK_DB, "Database Name", "",
           "This is the name of the database",
           ConfigurationField.Optional.NOT_OPTIONAL))
 
