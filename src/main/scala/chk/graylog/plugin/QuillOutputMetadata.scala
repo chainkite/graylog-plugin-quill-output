@@ -46,5 +46,5 @@ class QuillOutputMetadata extends PluginMetaData {
 
   def getUniqueId: String = classOf[QuillPgOutput].getName
 
-  def getVersion: Version = new Version(1, 0, 0)
+  def getVersion: Version = new Version(1, 1, 0)
 }
