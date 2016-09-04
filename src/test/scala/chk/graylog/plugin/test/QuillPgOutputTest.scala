@@ -58,7 +58,7 @@ class QuillPgOutputTest
   confMap.put(QuillPgOutput.CK_POOL_SIZE, int2Integer(200))
   confMap.put(QuillPgOutput.CK_BULK_INSERT_SIZE, int2Integer(100))
   confMap.put(QuillPgOutput.CK_DML,
-    "insert into test (datetime, level, message) values ({timestamp: org.joda.time.DateTime}, {level: int}, {full_message: string})")
+    "insert into test (datetime, level, message) values ({timestamp: org.joda.time.DateTime}, {level}, {full_message})")
   val conf = new Configuration(confMap)
   val output = new QuillPgOutput(conf)
 
@@ -86,7 +86,7 @@ class QuillPgOutputTest
     it("should running") {
       output.isRunning should be(true)
     }
-    it("should write message to mysql") {
+    it("should write message") {
       noException should be thrownBy Await.result(truncate(), WAIT_TIME)
       lazy val msg = writeOneMsg(0)
       noException should be thrownBy msg
@@ -103,7 +103,8 @@ class QuillPgOutputTest
       noException should be thrownBy output.write(msg.toMessage())
       Await.result(selectAll, WAIT_TIME) should contain(msg)
     }
-    it("should write multiple messages to mysql") {
+    it("should write multiple messages" +
+      "") {
       noException should be thrownBy Await.result(truncate(), WAIT_TIME)
       val size = 10000
       lazy val msgs = writeMultiMsg(size)
