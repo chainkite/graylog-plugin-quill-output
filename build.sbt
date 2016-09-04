@@ -10,7 +10,7 @@ scalaVersion := "2.11.8"
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
   "io.getquill" %% "quill-async" % "0.9.0",
-  "org.graylog2" % "graylog2-server" % "2.0.3" % "provided",
+  "org.graylog2" % "graylog2-server" % "2.1.0" % "provided",
   "org.scalatest" %% "scalatest" % "2.2.6" % "test",
   "ru.yandex.qatools.embed" % "postgresql-embedded" % "1.15" % "test"
 )
