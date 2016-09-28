@@ -19,7 +19,7 @@ fork in Test := false
 parallelExecution in Test := false
 
 //    test in assembly := {}
-assemblyJarName in assembly := s"${name}-${version}.jar"
+assemblyJarName in assembly := s"${name.value}-${version.value}.jar"
 assemblyMergeStrategy in assembly := {
   case x if x.endsWith(".class") => MergeStrategy.last
   case x if x.endsWith(".properties") => MergeStrategy.last
